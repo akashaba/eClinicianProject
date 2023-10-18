@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Add necessary dependencies and title -->
+  <meta charset="UTF-8">
+  <title>Patients</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/images/logo.jpg" width="70" height="50" class="d-inline-block align-top" alt="">
+  </a>
+  <a class="navbar-brand" href="#">eClinician App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/doctors}">View Doctors</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+<div class="container mt-5">
+  <h1>Add Medical Record for Patient <span th:text="${medicalRecord.patient.name}"></span></h1>
+  <form th:action="@{'/patients/'+${medicalRecord.patient.patientId}+'/add/record'}" method="post" th:object="${medicalRecord}">
+    <input type="hidden" name="patient.id" th:value="${medicalRecord.patient.patientId}" />
+    <div class="form-group">
+      <label for="diagnosis">Diagnosis:</label>
+      <input type="text" id="diagnosis" name="diagnosis" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="medication">Medication:</label>
+      <input type="text" id="medication" name="medication" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+</html>

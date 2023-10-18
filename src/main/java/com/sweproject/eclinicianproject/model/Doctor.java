@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,8 +14,12 @@ import javax.persistence.Id;
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int doctorId;
+    private Long doctorId;
     private String name;
     private String specialization;
     private String contactPhone;
+    @OneToMany(mappedBy = "doctor")
+    private List<Patient> patients;
+
+//    @OneToMany(mappedBy = "doctor"
 }

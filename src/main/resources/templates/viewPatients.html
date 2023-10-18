@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Patients</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Medical Records App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+<div class="container mt-5">
+  <h1 th:text="${doctor.name}'s Patients"></h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Doctor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+      <td th:text="${patient.patientId}"></td>
+      <td th:text="${patient.name}"></td>
+      <td th:text="${patient.age}"></td>
+      <td th:text="${patient.address}"></td>
+      <td th:text="${patient.doctor}"></td>
+      <td><a th:href="@{'/patient/records/' + ${patient.patientId}}">View Records</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

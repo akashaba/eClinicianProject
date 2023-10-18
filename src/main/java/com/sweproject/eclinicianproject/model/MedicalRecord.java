@@ -2,7 +2,6 @@ package com.sweproject.eclinicianproject.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -14,19 +13,21 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Prescription {
+public class MedicalRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String diagnosis;
+
     private String medication;
 
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate date;
 
 //    @ManyToOne
-//    @JoinColumn(name = "medical_record_id")
-//    private MedicalRecord medicalRecord;
+//    @JoinColumn(name = "doctor_id")
+//    private Doctor doctor;
+
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
